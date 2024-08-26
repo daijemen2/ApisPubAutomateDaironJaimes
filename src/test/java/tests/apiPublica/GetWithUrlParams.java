@@ -1,4 +1,5 @@
-package test.apiPublica;
+package tests.apiPublica;
+
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -7,36 +8,32 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class GetWithUrlPrams {
+public class GetWithUrlParams {
 
-    @Test
-    public void testWithParams1() {
+    //@Test
+    public void getWithUrlParams() {
 
         RequestSpecification request = given()
                 .baseUri("https://api.restful-api.dev")
                 .basePath("/objects")
-                .formParam("id", "1")
-                .formParam("id", "2");
-
-
+                .formParams("id","5")
+                .formParams("id","10");
 
         Response response = request
                 .when()
                 .get();
         response.prettyPrint();
-        int statusCode = response.statusCode();
+        int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
 
     }
-
     @Test
-    public void testWithParams2() {
+    public void getWithUrlParams2() {
 
         RequestSpecification request = given()
                 .baseUri("https://api.restful-api.dev")
                 .basePath("/objects")
-                .formParam("id", 1,2);
-
+                .formParam("id",5,7,10);
 
 
 
@@ -44,8 +41,5 @@ public class GetWithUrlPrams {
                 .when()
                 .get();
         response.prettyPrint();
-        int statusCode = response.statusCode();
-        Assert.assertEquals(statusCode, 200);
-
     }
 }

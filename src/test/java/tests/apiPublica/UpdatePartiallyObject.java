@@ -1,4 +1,4 @@
-package test.apiPublica;
+package tests.apiPublica;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -9,22 +9,25 @@ import java.io.File;
 
 import static io.restassured.RestAssured.given;
 
-public class DeleteObject {
-    @Test
-    public void testApiRequestAuthLevel() {
+public class UpdatePartiallyObject {
 
-        File postBody = new File("src/main/resources/DeleteObject.json");
+    @Test
+    public void updateObject(){
+
+        File patchBody = new File("src/main/resources/patchUpdate.json");
+
         RequestSpecification request = given()
                 .baseUri("https://api.restful-api.dev")
                 .basePath("/objects")
                 .header("Content-Type","application/json")
-                .body(postBody);
+                .body(patchBody);
 
         Response response = request
                 .when()
-                .put("/ff80818190966d7f0190a2d93f34200c");
+                .patch("/ff80818190c0e1170190c5d3dbff086f");
+
         response.prettyPrint();
-        int statusCode = response.statusCode();
+        int statusCode = response.getStatusCode();
         Assert.assertEquals(statusCode, 200);
 
     }
