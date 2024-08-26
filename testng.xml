@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Test" thread-count="5" parallel="tests">
+
+    <test name="Test">
+        <classes>
+            <class name="test.apiPublica.CreateObject"/>
+        </classes>
+    </test>
+
+    <test name="Test2">
+        <parameter name="id" value="/2"/>
+        <parameter name="expectedStatusCode" value="200"/>
+        <classes>
+            <class name="test.apiPublica.GetSingleObject"/>
+        </classes>
+    </test>
+
+    <test name="Test2 error 404">
+        <parameter name="id" value="/50"/>
+        <parameter name="expectedStatusCode" value="404"/>
+        <classes>
+            <class name="test.apiPublica.GetSingleObject"/>
+        </classes>
+    </test>
+    <test name="Test3">
+        <classes>
+            <class name="test.apiPublica.UpdateObject"/>
+        </classes>
+    </test>
+
+    <test name="Test4">
+        <classes>
+            <class name="test.apiPublica.UpdatePartialObject"/>
+        </classes>
+    </test>
+
+    <test name="Test5">
+        <classes>
+            <class name="test.apiPublica.GetObject"/>
+        </classes>
+    </test>
+
+    <test name="Test6">
+        <classes>
+            <class name="test.apiPublica.DeleteObject"/>
+        </classes>
+    </test>
+</suite>
